@@ -86,10 +86,27 @@ const Cart = () => {
     }
 
     const handleOrderNow = () => {
-        window.alert('Order placed succesfully!');
-        localStorage.removeItem('cart');
-        window.location.reload()
-       
+        const userId=window.localStorage.getItem('userId');
+        axios.post('http://localhost:5000/api/order', 
+            { 
+                    
+                        cart,
+                       userId
+            }, 
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                window.alert('Order placed succesfully!');
+                localStorage.removeItem('cart');
+                window.location.reload()
+            })
+            .catch(error => {
+                window.alert('Error occur please try again!');
+                // console.error('Error:', error);
+            });
     }
 
     return (

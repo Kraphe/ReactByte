@@ -7,6 +7,7 @@ const orderController={
     async getOrder(req,res,next){
       
        let documents;
+       console.log(req.params);
 
        console.log(req.params.userId)
         try {
@@ -19,20 +20,20 @@ const orderController={
     },
 
     async saveOrder(req,res,next){
-        const { userId, items, totalItems } = req.body;
-        console.log(req.body);
-        const itemsArray = Object.keys(items).map(itemId => ({
-            itemId,
-            quantity: items[itemId]
-        }));
-        // console.log(itemsArray,userId,totalItems);
-        if(totalItems===0)
-        return res.json({msg:"empty cart"})
+
+        const userId=req.body.userId;
+        const totalItems=req.body.cart.totalItems;
+        const items = [];
+        for (const itemId in req.body.cart.items) {
+                const quantity = req.body.cart.items[itemId];
+                items.push({ itemId, quantity });
+        }
+        console.log(items);
         
         const newOrder = new Order({
-            userId,
-            items: itemsArray,
-            totalItems
+            items,
+            totalItems,
+            userId
         });
         
         newOrder.save()

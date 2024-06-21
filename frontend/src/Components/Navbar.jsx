@@ -4,7 +4,6 @@ import { CartContext } from '../CartContext';
 import {useContext} from 'react'
 import { TokenContext } from '../TokenContext';
 import axios from 'axios'
-import Order from './Order';
 
 
 function Navbar() {
@@ -23,8 +22,9 @@ function Navbar() {
       setCart({});
       window.localStorage.removeItem('token');
       window.localStorage.removeItem('cart');
+      window.localStorage.removeItem('userId');
 
-      console.log(token);
+      // console.log(token);
     }
     catch(err){
       console.log(err)
@@ -41,11 +41,16 @@ function Navbar() {
       <li className='mt-3'><Link to='/'>Home</Link></li>
       <li className='mt-3 ml-4'><Link to='/products'>Products</Link></li>
       {
-        token.length?<li className='mt-3 ml-4'><button onClick={()=>{logOut()}}>Logout</button></li>:
-       <>
-          <Link to='/register'> <li className='mt-3 ml-4'>Register</li></Link>
-          <Link to='/login'> <li className='mt-3 ml-4'>Login</li></Link>
-       </>
+            token.length? 
+            <> 
+                 <Link to='/order'><li className='mt-3 ml-4'>My Order</li></Link>
+                <li className='mt-3 ml-4'><button onClick={()=>{logOut()}}>Logout</button></li>
+            </>
+            :
+            <>
+                <Link to='/register'> <li className='mt-3 ml-4'>Register</li></Link>
+                <Link to='/login'> <li className='mt-3 ml-4'>Login</li></Link>
+            </>
 
       }
       <li>

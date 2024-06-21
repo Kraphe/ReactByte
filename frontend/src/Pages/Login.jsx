@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { TokenContext } from '../TokenContext';
 import { useNavigate, useLocation } from "react-router-dom";
 import {CartContext} from '../CartContext'
+import { BACKEND_URL } from '../../config';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -34,14 +35,14 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', formData);
+      const response = await axios.post(`${BACKEND_URL}/login`, formData);
       toast.success('Login successful');
 
       const temp_token= response.data.refresh_token;
       setToken(temp_token);
       let _cart = {...cart};
       setCart(_cart);
-      window.localStorage.removeItem('cart');
+      // window.localStorage.removeItem('cart');
       window.localStorage.setItem('userId',formData.email);
       console.log(token);
       setTimeout(() => {

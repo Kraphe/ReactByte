@@ -1,6 +1,6 @@
 const {User,RefreshToken}=require('../models/db')
 const joi=require('joi');
-const bcrypt=require('bcryptjs');
+const bcryptjs=require('bcryptjs');
 const JwtService=require('../services/JwtService')
 const {REFRESH_SECRET} = require('../config')
 
@@ -22,7 +22,7 @@ const loginController={
 
         //  console.log(user.email);
 
-         const match =await bcrypt.compare(req.body.password,user.password);
+         const match =await bcryptjs.compare(req.body.password,user.password);
 
          if(!match)
          return res.json({msg:"wrong credentials"});

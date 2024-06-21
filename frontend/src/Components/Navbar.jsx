@@ -4,7 +4,7 @@ import { CartContext } from '../CartContext';
 import {useContext} from 'react'
 import { TokenContext } from '../TokenContext';
 import axios from 'axios'
-
+import { BACKEND_URL } from '../../config';
 
 function Navbar() {
 
@@ -16,7 +16,7 @@ function Navbar() {
 
   async function logOut(){
     try{
-      const response = await axios.post('http://localhost:5000/api/logout',requestBody);
+      const response = await axios.post(`${BACKEND_URL}/logout`,requestBody);
       console.log(response);
       setToken({});
       setCart({});

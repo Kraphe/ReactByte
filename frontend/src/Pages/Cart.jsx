@@ -3,6 +3,7 @@ import { CartContext } from '../CartContext';
 import axios from 'axios'
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../../config';
 
 // import { Navigate } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ const Cart = () => {
             return;
         }
         // console.log(Object.keys(cart.items));
-        axios.post('http://localhost:5000/api/product/cart-item', 
+        axios.post(`${BACKEND_URL}/product/cart-item`, 
         { 
             
                 id: Object.keys(cart.items)
@@ -87,7 +88,7 @@ const Cart = () => {
 
     const handleOrderNow = () => {
         const userId=window.localStorage.getItem('userId');
-        axios.post('http://localhost:5000/api/order', 
+        axios.post(`${BACKEND_URL}/order`, 
             { 
                     
                         cart,

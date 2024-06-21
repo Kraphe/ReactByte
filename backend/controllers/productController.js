@@ -137,7 +137,7 @@ const productController={
     },
     async getProducts(req, res, next) {
         let documents;
-     
+        // console.log("elllllllllllllllllllllleeeeeeeeeeeeeeelllllllll");
         try {
             documents = await Product.find().sort({_id:-1})
                 

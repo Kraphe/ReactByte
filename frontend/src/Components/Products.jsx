@@ -1,6 +1,7 @@
 import React, { useState,useEffect, useContext } from 'react'
 import Product from './Product'
 import axios from 'axios'
+import { BACKEND_URL } from '../../config';
 
 
 function Products() {
@@ -9,7 +10,7 @@ function Products() {
 
 
   useEffect(()=>{
-    axios.get('http://localhost:5000/api/product')
+    axios.get(`${BACKEND_URL}/product`)
     .then((res)=>{
       // console.log(res.data);
       setproducts(res.data);

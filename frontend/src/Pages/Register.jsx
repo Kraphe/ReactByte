@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../../config';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +35,7 @@ const Register = () => {
     e.preventDefault();
     try {
       console.log(formData);
-      const response = await axios.post('http://localhost:5000/api/register', formData);
+      const response = await axios.post(`${BACKEND_URL}/register`, formData);
       toast.success('Registration successful');
       setTimeout(() => {
         navigate('/login');

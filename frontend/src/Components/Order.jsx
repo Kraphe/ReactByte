@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext} from 'react';
 import { CartContext } from '../CartContext';
 import axios from 'axios';
+import { BACKEND_URL } from '../../config';
+
 const OrdersList = () => {
     const [orders, setOrders] = useState([]);
     useEffect( () => {     
@@ -8,7 +10,7 @@ const OrdersList = () => {
                 const userId=window.localStorage.getItem('userId')
                 console.log(userId);
                 const fetchOrders = async () => {
-                const response = await axios.get(`http://localhost:5000/api/order/${userId}`);
+                const response = await axios.get(`${BACKEND_URL}/order/${userId}`);
                 setOrders(response.data);
         };
 

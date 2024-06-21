@@ -10,7 +10,7 @@ function SingleProduct() {
 
     // console.log(params)
     useEffect(() => {
-       axios.get(`http://localhost:5000/api/product/${params.id}`)
+       axios.get(`${BACKEND_URL}/product/${params.id}`)
        .then((res)=>{
         // console.log(res)
         setProduct(res.data)

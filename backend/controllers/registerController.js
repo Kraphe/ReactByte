@@ -1,6 +1,6 @@
 const {User,RefreshToken}= require('../models/db')
 const joi = require('joi');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const JwtService=require('../services/JwtService')
 const {REFRESH_SECRET} = require('../config')
 
